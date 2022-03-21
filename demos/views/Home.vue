@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance, toRefs, watch } from 'vue'
+import { defineComponent, getCurrentInstance, toRefs, watch, onMounted } from 'vue'
 import { useRoute } from '../../src'
 import { RouterLink } from '../../src/RouterLink'
 
@@ -17,10 +17,6 @@ export default defineComponent({
   },
   props:{
     id: String
-  },
-  mounted(){
-    console.log(this.$router)
-    console.log(this.$route)
   },
   setup(props){
     const { proxy } = getCurrentInstance()
@@ -36,6 +32,9 @@ export default defineComponent({
         console.log(newId)
       }
     )
+    onMounted(()=>{
+      console.log('mounted...')
+    })
   }
 })
 </script>
