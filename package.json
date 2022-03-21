@@ -25,6 +25,7 @@
     "README.md"
   ],
   "scripts": {
+    "notes": "vite --config demos/vite.config.js",
     "dev": "vite --config playground/vite.config.js",
     "release": "bash scripts/release.sh",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
@@ -70,7 +71,8 @@
     "attributes": "vetur/attributes.json"
   },
   "dependencies": {
-    "@vue/devtools-api": "^6.0.0"
+    "@vue/devtools-api": "^6.0.0",
+    "echarts": "^5.3.1"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.18.11",

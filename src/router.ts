@@ -352,6 +352,38 @@ export interface Router {
  *
  * @param options - {@link RouterOptions}
  */
+/**
+ * notes:by shennana
+ * 怎么用？
+ * ---------------------------------- start ----------------------------------------
+ * 在创建一个应用时 需要从vue-router库引入的
+ * 使用方式
+ * import { createRouter, createWebHashHistory } from '../src'
+ * const router = createRouter({ history: createWebHashHistory(), routes:[] }
+ * app.use(router)
+ * ----------------------------------- end -----------------------------------------
+ *
+ * 函数入参:RouterOptions
+ * ---------------------------------- start ----------------------------------------
+ * history: 必选 没有的话会报错 历史记录模式  包括hash模式和html模式
+ * routes:
+ * ----------------------------------- end -----------------------------------------
+ *
+ * 函数出参:Router
+ * ---------------------------------- start ----------------------------------------
+ *
+ *
+ * ----------------------------------- end -----------------------------------------
+ *
+ * 流程梳理:
+ * ---------------------------------- start ----------------------------------------
+ *
+ *
+ * ----------------------------------- end -----------------------------------------
+ *
+ * @param options
+ * @returns
+ */
 export function createRouter(options: RouterOptions): Router {
   const matcher = createRouterMatcher(options.routes, options)
   const parseQuery = options.parseQuery || originalParseQuery
@@ -362,10 +394,9 @@ export function createRouter(options: RouterOptions): Router {
       'Provide the "history" option when calling "createRouter()":' +
         ' https://next.router.vuejs.org/api/#history.'
     )
-
-  const beforeGuards = useCallbacks<NavigationGuardWithThis<undefined>>()
-  const beforeResolveGuards = useCallbacks<NavigationGuardWithThis<undefined>>()
-  const afterGuards = useCallbacks<NavigationHookAfter>()
+  const beforeGuards = useCallbacks<NavigationGuardWithThis<undefined>>() //全局前置守卫beforeEach回调函数list
+  const beforeResolveGuards = useCallbacks<NavigationGuardWithThis<undefined>>() //全局解析守卫beforeResolve回调函数list
+  const afterGuards = useCallbacks<NavigationHookAfter>() //全局后置守卫afterEach回调函数list
   const currentRoute = shallowRef<RouteLocationNormalizedLoaded>(
     START_LOCATION_NORMALIZED
   )
